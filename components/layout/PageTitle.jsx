@@ -9,7 +9,7 @@ const PageTitle = (props) => {
 const styles = StyleSheet.create({
   pageTitleText: {
     fontSize: 20,
-    width: 100,
+    width: 200,
     fontWeight: "bold",
     marginVertical: 10,
   },

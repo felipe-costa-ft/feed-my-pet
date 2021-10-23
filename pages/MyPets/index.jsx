@@ -7,7 +7,7 @@ import PetsList from "../../components/MyPets/PetsList";
 const MyPets = (props) => {
   return (
     <View>
-      <PageHeader title="Meus Pets" />
+      <PageHeader title="Meus Pets" default={props.default} />
       <ScrollView>
         <PetsList />
       </ScrollView>
