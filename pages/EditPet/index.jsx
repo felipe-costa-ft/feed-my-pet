@@ -11,7 +11,11 @@ const NewPet = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <View>
-      <PageHeader title="Registrar Pet" default={props.default}></PageHeader>
+      <PageHeader
+        title="Registrar Pet"
+        default={props.default}
+        backTo="/"
+      ></PageHeader>
       <UpdatePhoto action="Adicionar Foto" />
       <Text style={styles.label}>Nome</Text>
       <Input />

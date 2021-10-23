@@ -1,14 +1,20 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { StyleSheet, Text, View } from "react-native";
+import { NativeRouter, Route, Link } from "react-router-native";
+
 import MyPets from "./pages/MyPets";
 import EditPet from "./pages/EditPet";
+
+const Home = () => <MyPets default />;
+const NewPet = () => <EditPet />;
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <EditPet default />
+      <NativeRouter>
+        <Route exact path="/" component={Home} />
+        <Route path="/newpet" component={NewPet} />
+      </NativeRouter>
     </SafeAreaProvider>
   );
 }
