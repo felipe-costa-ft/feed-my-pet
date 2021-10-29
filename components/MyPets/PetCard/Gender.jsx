@@ -17,6 +17,7 @@ const Gender = (props) => {
 const styles = StyleSheet.create({
   gender: {
     marginTop: 35,
+    alignSelf: "flex-end",
   },
 });
 export default Gender;

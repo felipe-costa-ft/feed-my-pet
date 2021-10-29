@@ -17,7 +17,7 @@ const PetCard = (props) => {
           nextFeeding={props.petData.nextFeeding}
         />
         <FlexColumn>
-          <Actions />
+          <Actions petKey={props.petKey} refresh={props.refresh} />
           <Gender gender={props.petData.gender} />
         </FlexColumn>
       </View>

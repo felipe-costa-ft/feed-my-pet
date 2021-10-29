@@ -1,6 +1,6 @@
 ## Tarefas
 
-- [] Deletar Pet
+- [x] Deletar Pet
 - [] Editar Pet
 - [] Selecionar foto do pet
 - [] Selecionar horários de alimentação do pet

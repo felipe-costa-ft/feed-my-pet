@@ -38,7 +38,12 @@ const PetsList = (props) => {
   return (
     <View style={styles.petsList}>
       {pets.map((pet) => (
-        <PetCard key={pet[0]} petData={JSON.parse(pet[1])} />
+        <PetCard
+          key={pet[0]}
+          petKey={pet[0]}
+          petData={JSON.parse(pet[1])}
+          refresh={getMultiple}
+        />
       ))}
     </View>
   );
