@@ -7,7 +7,14 @@ const GenderSelect = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <ButtonGroup
-      onPress={(index) => setSelectedIndex(index)}
+      onPress={(index) => {
+        setSelectedIndex(index);
+        if (index === 0) {
+          props.setPetData({ ...props.petData, gender: "male" });
+        } else {
+          props.setPetData({ ...props.petData, gender: "female" });
+        }
+      }}
       selectedIndex={selectedIndex}
       buttons={genders}
       containerStyle={{ height: 100, borderRadius: 50, height: 60 }}

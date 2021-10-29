@@ -1,21 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { View } from "react-native";
 import PetCard from "./PetCard";
 
-const petMock = {
-  name: "Jorginho",
-  nextFeeding: "11:00 am",
-  gender: "male",
-};
-
 const PetsList = (props) => {
+  const [pets, setPets] = useState([]);
+
+  const getAllKeys = async () => {
+    let keys = [];
+    try {
+      keys = await AsyncStorage.getAllKeys();
+    } catch (e) {
+      console.log(e);
+    }
+
+    return keys;
+  };
+
+  const getMultiple = async () => {
+    const keys = await getAllKeys();
+    let values;
+    try {
+      values = await AsyncStorage.multiGet(keys);
+    } catch (e) {
+      console.log(e);
+    }
+
+    setPets(values);
+  };
+
+  useEffect(async () => {
+    getMultiple();
+  }, []);
+
   return (
     <View style={styles.petsList}>
-      <PetCard petData={petMock} />
-      <PetCard petData={petMock} />
-      <PetCard petData={petMock} />
-      <PetCard petData={petMock} />
+      {pets.map((pet) => (
+        <PetCard key={pet[0]} petData={JSON.parse(pet[1])} />
+      ))}
     </View>
   );
 };

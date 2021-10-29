@@ -11,6 +11,7 @@ const SaveButton = (props) => {
         type: "font-awesome",
         color: "white",
       }}
+      onPress={() => props.savePetData()}
     />
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NativeRouter, Route, Link } from "react-router-native";
+import "react-native-get-random-values";
 
 import MyPets from "./pages/MyPets";
 import EditPet from "./pages/EditPet";
