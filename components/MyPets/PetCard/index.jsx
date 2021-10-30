@@ -11,7 +11,7 @@ const PetCard = (props) => {
   return (
     <Card>
       <View style={styles.petCard}>
-        <PetPhoto />
+        <PetPhoto photo={props.petData.photoUri} />
         <PetDetails
           name={props.petData.name}
           nextFeeding={props.petData.nextFeeding}

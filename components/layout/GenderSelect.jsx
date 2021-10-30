@@ -16,7 +16,6 @@ const GenderSelect = (props) => {
   return (
     <ButtonGroup
       onPress={(index) => {
-        console.log(props.petData.gender);
         setSelectedIndex(index);
         if (index === 0) {
           props.setPetData({ ...props.petData, gender: "male" });

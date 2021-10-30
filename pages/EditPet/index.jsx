@@ -9,7 +9,7 @@ import { Input } from "react-native-elements";
 import GenderSelect from "../../components/layout/GenderSelect";
 import SaveButton from "../../components/layout/SaveButton";
 
-const NewPet = (props) => {
+const EditPet = (props) => {
   const [petData, setPetData] = useState({ key: "", gender: "male" });
   const history = useHistory();
   const { key } = useParams();
@@ -54,7 +54,11 @@ const NewPet = (props) => {
         default={props.default}
         backTo="/"
       ></PageHeader>
-      <UpdatePhoto action={key ? "Editar Foto" : "Adicionar Foto"} />
+      <UpdatePhoto
+        setPetData={setPetData}
+        petData={petData}
+        action={key ? "Editar Foto" : "Adicionar Foto"}
+      />
       <Text style={styles.label}>Nome</Text>
       <Input
         value={petData.name}
@@ -103,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewPet;
+export default EditPet;
