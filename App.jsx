@@ -8,6 +8,7 @@ import EditPet from "./pages/EditPet";
 
 const Home = () => <MyPets default />;
 const NewPet = () => <EditPet />;
+const EditExistentPet = () => <EditPet />;
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <NativeRouter>
         <Route exact path="/" component={Home} />
         <Route path="/newpet" component={NewPet} />
+        <Route path="/editpet/:key" component={EditExistentPet} />
       </NativeRouter>
     </SafeAreaProvider>
   );

@@ -1,44 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { nanoid } from "nanoid";
-import { useHistory } from "react-router-native";
+import { useHistory, useParams } from "react-router-native";
 import { StyleSheet, Text, View } from "react-native";
 import PageHeader from "../../components/layout/PageHeader";
 import UpdatePhoto from "../../components/layout/UpdatePhoto";
-import { Input, ButtonGroup } from "react-native-elements";
+import { Input } from "react-native-elements";
 import GenderSelect from "../../components/layout/GenderSelect";
 import SaveButton from "../../components/layout/SaveButton";
 
 const NewPet = (props) => {
-  const [petData, setPetData] = useState(props.petData ? props.petData : {});
+  const [petData, setPetData] = useState({ key: "", gender: "male" });
   const history = useHistory();
+  const { key } = useParams();
+
+  const getPetData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(key);
+      await setPetData(JSON.parse(jsonValue));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(async () => {
+    if (key) {
+      await getPetData();
+    }
+  }, []);
 
   const savePetData = async () => {
-    let key;
-    if (!petData.key) {
-      key = nanoid();
+    let petKey;
+    if (!key) {
+      petKey = nanoid();
     } else {
-      key = petData.key;
+      petKey = key;
     }
 
     try {
       const jsonValue = JSON.stringify(petData);
-      await AsyncStorage.setItem(key, jsonValue);
+      await AsyncStorage.setItem(petKey, jsonValue);
 
       history.push("/");
     } catch (e) {
-      // saving error
+      console.log(e);
     }
   };
 
   return (
     <View>
       <PageHeader
-        title={props.key ? "Editar Pet" : "Registrar Pet"}
+        title={key ? "Editar Pet" : "Registrar Pet"}
         default={props.default}
         backTo="/"
       ></PageHeader>
-      <UpdatePhoto action={props.key ? "Editar Foto" : "Adicionar Foto"} />
+      <UpdatePhoto action={key ? "Editar Foto" : "Adicionar Foto"} />
       <Text style={styles.label}>Nome</Text>
       <Input
         value={petData.name}
@@ -54,6 +70,7 @@ const NewPet = (props) => {
       <Text style={styles.label}>Horário</Text>
       <Input
         label="Próxima alimentação"
+        value={petData.nextFeeding}
         onChangeText={(h) => {
           setPetData({
             ...petData,
@@ -63,6 +80,7 @@ const NewPet = (props) => {
       />
       <Input
         label="Intervalo"
+        value={petData.intervale}
         onChangeText={(i) => {
           setPetData({
             ...petData,

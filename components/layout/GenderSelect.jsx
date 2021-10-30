@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Input, ButtonGroup } from "react-native-elements";
 
 const GenderSelect = (props) => {
   const genders = ["Macho", "Fêmea"];
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (props.petData.gender === "male") {
+      setSelectedIndex(0);
+    } else {
+      setSelectedIndex(1);
+    }
+  }, [props.petData]);
   return (
     <ButtonGroup
       onPress={(index) => {
+        console.log(props.petData.gender);
         setSelectedIndex(index);
         if (index === 0) {
           props.setPetData({ ...props.petData, gender: "male" });

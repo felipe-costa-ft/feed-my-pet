@@ -1,7 +1,8 @@
 ## Tarefas
 
 - [x] Deletar Pet
-- [] Editar Pet
+- [x] Editar Pet
+- [] Tornar campos obrigatórios no formulário
 - [] Selecionar foto do pet
 - [] Selecionar horários de alimentação do pet
 - [] Calcular horário da próxima alimentação
